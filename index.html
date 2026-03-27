@@ -221,40 +221,6 @@
     color: var(--black);
   }
 
-  /* ── ADD-ONS ── */
-  .addons { display: flex; flex-direction: column; gap: 12px; }
-  .addon-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: var(--dark-card);
-    border: 1px solid var(--dark-border);
-    border-radius: 12px;
-    padding: 18px 20px;
-    cursor: pointer;
-    transition: border-color 0.3s;
-  }
-  .addon-item:hover { border-color: rgba(201,168,76,0.3); }
-  .addon-item.checked { border-color: var(--gold); }
-  .addon-left { display: flex; align-items: center; gap: 14px; }
-  .addon-check {
-    width: 22px; height: 22px;
-    border: 1.5px solid var(--dark-border);
-    border-radius: 6px;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.25s;
-    flex-shrink: 0;
-  }
-  .addon-item.checked .addon-check {
-    background: var(--gold);
-    border-color: var(--gold);
-  }
-  .addon-check svg { width: 13px; height: 13px; fill: var(--black); opacity: 0; transition: opacity 0.2s; }
-  .addon-item.checked .addon-check svg { opacity: 1; }
-  .addon-name { font-size: 0.88rem; color: var(--text); }
-  .addon-desc { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
-  .addon-price { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--gold); white-space: nowrap; }
-
   /* ── GALLERY ── */
   .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .gallery-item {
@@ -494,71 +460,6 @@
 
 <div class="divider"></div>
 
-<!-- ADD-ONS -->
-<section>
-  <h2 class="section-title">Add-On Services</h2>
-  <p class="section-subtitle">Enhance your detail</p>
-
-  <div class="addons">
-    <div class="addon-item" onclick="toggleAddon(this)">
-      <div class="addon-left">
-        <div class="addon-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-        <div>
-          <div class="addon-name">Odor Bomb Treatment</div>
-          <div class="addon-desc">Eliminates deep-set odors at the source</div>
-        </div>
-      </div>
-      <div class="addon-price">+$45</div>
-    </div>
-
-    <div class="addon-item" onclick="toggleAddon(this)">
-      <div class="addon-left">
-        <div class="addon-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-        <div>
-          <div class="addon-name">Scratch Removal</div>
-          <div class="addon-desc">Wet-sand & compound minor paint scratches</div>
-        </div>
-      </div>
-      <div class="addon-price">+$75</div>
-    </div>
-
-    <div class="addon-item" onclick="toggleAddon(this)">
-      <div class="addon-left">
-        <div class="addon-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-        <div>
-          <div class="addon-name">Pet Hair Extraction</div>
-          <div class="addon-desc">Deep extraction from seats, carpet & crevices</div>
-        </div>
-      </div>
-      <div class="addon-price">+$55</div>
-    </div>
-
-    <div class="addon-item" onclick="toggleAddon(this)">
-      <div class="addon-left">
-        <div class="addon-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-        <div>
-          <div class="addon-name">Headlight Restoration</div>
-          <div class="addon-desc">Sand, polish & UV-seal hazy headlights</div>
-        </div>
-      </div>
-      <div class="addon-price">+$60</div>
-    </div>
-
-    <div class="addon-item" onclick="toggleAddon(this)">
-      <div class="addon-left">
-        <div class="addon-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-        <div>
-          <div class="addon-name">Windshield Ceramic Coat</div>
-          <div class="addon-desc">Hydrophobic glass treatment for rain repellency</div>
-        </div>
-      </div>
-      <div class="addon-price">+$40</div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
 <!-- GALLERY -->
 <section>
   <h2 class="section-title">Our Work</h2>
@@ -661,10 +562,6 @@
     document.getElementById('stickyBar').classList.add('visible');
   }
 
-  function toggleAddon(item) {
-    item.classList.toggle('checked');
-  }
-
   function handleBooking(e) {
     e.preventDefault();
     const name = document.getElementById('name').value;
@@ -672,16 +569,12 @@
     const vehicle = document.getElementById('vehicle').value;
     const pkg = selectedCard ? selectedCard.name : 'No package selected';
 
-    const addons = [];
-    document.querySelectorAll('.addon-item.checked .addon-name').forEach(el => addons.push(el.textContent));
-
     alert(
       `Booking Confirmed!\n\n` +
       `Name: ${name}\n` +
       `Date: ${date}\n` +
       `Vehicle: ${vehicle}\n` +
-      `Package: ${pkg}\n` +
-      (addons.length ? `Add-Ons: ${addons.join(', ')}` : 'No add-ons selected')
+      `Package: ${pkg}`
     );
   }
 
